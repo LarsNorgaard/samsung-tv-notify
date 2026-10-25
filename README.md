@@ -1,4 +1,4 @@
-# Samsung TV Notify
+# Samsung TV Notify BUILD WITH AI. I TAKE NO RESPONSIBILITY IF IT BURNS YOUR HOUSE DOWN OR BRICKS YOUR TV.
 
 Show Home Assistant notifications as native banners on a Samsung Tizen TV: the same small
 pop-up the TV uses for its own messages, without taking over the screen.
