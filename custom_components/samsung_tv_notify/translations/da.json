@@ -1,0 +1,59 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Samsung TV Notify",
+        "description": "HA Notify-appen skal være installeret på TV'et. Opsætningen starter den én gang, så TV'et viser dens startskærm i et par sekunder.",
+        "data": {
+          "host": "Vært",
+          "port": "Port til notifikationsservicen"
+        },
+        "data_description": {
+          "host": "TV'ets IP-adresse eller værtsnavn.",
+          "port": "Porten for HA Notify-servicen på TV'et (8099, medmindre appen er ændret)."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Kunne ikke nå TV'et eller starte notifikationsservicen. Sørg for, at TV'et er tændt.",
+      "app_not_installed": "HA Notify-appen er ikke installeret på TV'et."
+    },
+    "abort": {
+      "already_configured": "Dette TV er allerede sat op."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "auto_start": "Start servicen automatisk",
+          "display_time": "Visningstid for banneret (sekunder)"
+        },
+        "data_description": {
+          "auto_start": "Hvis servicen ikke kører, når en notifikation sendes, startes HA Notify-appen først. TV'et viser appens startskærm i et par sekunder.",
+          "display_time": "Hvor længe banneret bliver på skærmen."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "service_running": {
+        "name": "Notifikationsservice"
+      }
+    },
+    "button": {
+      "start_service": {
+        "name": "Start notifikationsservice"
+      }
+    }
+  },
+  "exceptions": {
+    "send_failed": {
+      "message": "Kunne ikke vise notifikationen på TV'et: {error}"
+    },
+    "start_failed": {
+      "message": "Kunne ikke starte notifikationsservicen på TV'et: {error}"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HA Notify</title>
+<style>
+  body { margin: 0; background: #111; color: #eee; font: 32px sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; }
+</style>
+</head>
+<body>
+<div id="status">Starting HA Notify service...</div>
+<script>
+  // Launcher: start the background service, then get out of the way.
+  var SERVICE_ID = 'HAnotifyPC.Service';
+  var statusEl = document.getElementById('status');
+
+  // Close quickly on success (Home Assistant may launch this automatically);
+  // keep errors on screen long enough to read.
+  function done(text, delay) {
+    statusEl.textContent = text;
+    setTimeout(function () {
+      try { tizen.application.getCurrentApplication().exit(); } catch (e) {}
+    }, delay);
+  }
+
+  try {
+    tizen.application.launchAppControl(
+      new tizen.ApplicationControl('http://tizen.org/appcontrol/operation/service'),
+      SERVICE_ID,
+      function () { done('HA Notify service started.', 500); },
+      function (e) { done('Could not start service: ' + e.message, 5000); }
+    );
+  } catch (e) {
+    done('Error: ' + e.message, 5000);
+  }
+</script>
+</body>
+</html>

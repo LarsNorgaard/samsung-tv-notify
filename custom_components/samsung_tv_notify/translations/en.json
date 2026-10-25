@@ -1,0 +1,59 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Samsung TV Notify",
+        "description": "The HA Notify app must be installed on the TV. Setup launches it once, so the TV shows its start screen for a few seconds.",
+        "data": {
+          "host": "Host",
+          "port": "Notification service port"
+        },
+        "data_description": {
+          "host": "IP address or hostname of the TV.",
+          "port": "Port of the HA Notify service on the TV (8099 unless you changed the app)."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not reach the TV or start the notification service. Make sure the TV is on.",
+      "app_not_installed": "The HA Notify app is not installed on the TV."
+    },
+    "abort": {
+      "already_configured": "This TV is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "auto_start": "Start the service automatically",
+          "display_time": "Banner display time (seconds)"
+        },
+        "data_description": {
+          "auto_start": "If the service is not running when a notification is sent, launch the HA Notify app first. The TV shows the app's start screen for a few seconds.",
+          "display_time": "How long the banner stays on screen."
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "service_running": {
+        "name": "Notification service"
+      }
+    },
+    "button": {
+      "start_service": {
+        "name": "Start notification service"
+      }
+    }
+  },
+  "exceptions": {
+    "send_failed": {
+      "message": "Could not show the notification on the TV: {error}"
+    },
+    "start_failed": {
+      "message": "Could not start the notification service on the TV: {error}"
+    }
+  }
+}
